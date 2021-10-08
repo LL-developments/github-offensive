@@ -1,0 +1,7 @@
+.container {
+  border-top: 2px var(--tertiary) solid;
+  display: grid;
+  grid: 1fr 1fr / 1fr 1fr;
+  height: 100%;
+  width: 100%;
+}

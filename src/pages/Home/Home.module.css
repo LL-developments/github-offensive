@@ -1,0 +1,11 @@
+.main {
+  background: var(--background);
+  color: var(--primary);
+  display: grid;
+  height: 100%;
+  overflow: auto;
+  place-items: center;
+  position: relative;
+  text-decoration: underline;
+  width: 100%;
+}

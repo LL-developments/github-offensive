@@ -1,0 +1,61 @@
+.header {
+  background: rgb(85, 85, 85);
+  border-bottom: 0.3125rem white double;
+  display: grid;
+  grid: 1fr / 2fr 1fr 1.25fr;
+  height: 100%;
+  padding-inline: 2rem;
+  place-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.header > h1 {
+  border-radius: 5rem;
+  color: white;
+  display: grid;
+  height: 50%;
+  letter-spacing: 0.05em;
+  place-items: center;
+  text-shadow: 0 0.125rem 0.125rem rgba(0, 0, 0, 0.25);
+  width: 50%;
+}
+
+.articleInput {
+  display: grid;
+  gap: 25px;
+  grid: 1fr /  1fr 1fr;
+  height: 100%;
+  place-items: center;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.articleInput > input {
+  border: 3px solid var(--primary);
+  text-align: center;
+  width: 100%;
+}
+
+.articleInput > input::placeholder {
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+.articleInput > span {
+  background: var(--primary);
+  border-left: 2px white double;
+  border-radius: 5px;
+  border-top: 2px white double;
+  bottom: 0;
+  color: white;
+  display: grid;
+  font-size: 0.8rem;
+  height: 30%;
+  left: -10%;
+  padding: 5px;
+  place-items: center;
+  position: absolute;
+  transition: all 1s ease;
+}
