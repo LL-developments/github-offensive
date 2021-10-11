@@ -53,7 +53,7 @@ const Header = () => {
 
   return (
     <header className={style.header}>
-      <h1>Github Offensive</h1>
+      <h1>Github Statistics</h1>
       <p>{`${welcomeMessage()}, seja bem vindo ${user || 'usuário'}`}</p>
       {renderInput()}
     </header>
