@@ -1,10 +1,10 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import './LinkList.css';
 
-const LinkList = (props) => {
-  console.log(props);
-  const linkMarkup = props.options.map((link) => (
+const LinkList = ({ options }) => {
+  const linkMarkup = options.map((link) => (
     <li key={link.id} className="link-list-item">
       <a
         href={link.url}
@@ -18,6 +18,10 @@ const LinkList = (props) => {
   ));
 
   return <ul className="link-list">{linkMarkup}</ul>;
+};
+
+LinkList.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default LinkList;

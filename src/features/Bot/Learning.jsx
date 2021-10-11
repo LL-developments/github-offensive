@@ -1,12 +1,13 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import './Learning.css';
 
-const LearningOptions = (props) => {
+const LearningOptions = ({ actionProvider }) => {
   const options = [
     {
       text: 'Javascript',
-      handler: props.actionProvider.handleJavascriptList,
+      handler: actionProvider.handleJavascriptList,
       id: 1,
     },
     { text: 'Data visualization', handler: () => {}, id: 2 },
@@ -27,6 +28,12 @@ const LearningOptions = (props) => {
   ));
 
   return <div className="learning-options-container">{optionsMarkup}</div>;
+};
+
+LearningOptions.propTypes = {
+  actionProvider: PropTypes.shape({
+    handleJavascriptList: PropTypes.func,
+  }).isRequired,
 };
 
 export default LearningOptions;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import {
   BarChart, Bar, ResponsiveContainer, XAxis,
@@ -6,8 +6,10 @@ import {
 import style from './Contributions.module.css';
 
 const Contributions = () => {
-  const { issues: { items }, loading } = useSelector((state) => state.data);
-  console.log(items.length);
+  const {
+    issues: { total_count: totalCount, items: issues },
+    loading,
+  } = useSelector((state) => state.data);
   const data = [
     {
       name: 'Page A',
@@ -53,18 +55,37 @@ const Contributions = () => {
     },
   ];
 
+  // TODO Fazer requisicao com url de events
+  const renderIssues = () => (
+    <article className={style.issuesContainer}>
+      <section className={style.issues}>
+        <h2>{`Voce possui ${totalCount}`}</h2>
+        {issues.map((issue) => {
+          const { title } = issue;
+          return (
+            <section className={style.issue}>
+              <h3>{title}</h3>
+            </section>
+          );
+        })}
+      </section>
+      <section className={style.issues}>
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart width={150} height={40} data={data}>
+            <Bar dataKey="uv" fill="grey" />
+            <Bar dataKey="amt" fill="black" />
+            <XAxis dataKey="name" />
+          </BarChart>
+        </ResponsiveContainer>
+      </section>
+    </article>
+  );
+
   if (loading) return <div>Carregando...</div>;
 
   return (
     <section className={style.container}>
-      {`Contribuições com a comunidade: ${items}`}
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart width={150} height={40} data={data}>
-          <Bar dataKey="uv" fill="grey" />
-          <Bar dataKey="amt" fill="black" />
-          <XAxis dataKey="name" />
-        </BarChart>
-      </ResponsiveContainer>
+      {renderIssues()}
     </section>
   );
 };

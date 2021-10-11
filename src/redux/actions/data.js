@@ -1,24 +1,22 @@
 import fetch from 'services';
 import { GET_DATA, GET_DATA_FAIL, GET_DATA_SUCCESS } from './types';
 
-const gettingData = () => ({
+export const gettingData = () => ({
   type: GET_DATA,
 });
 
-const dataFail = () => ({
+export const dataFail = () => ({
   type: GET_DATA_FAIL,
 });
 
-const dataSuccess = (payload) => ({
+export const dataSuccess = (payload) => ({
   type: GET_DATA_SUCCESS,
   payload,
 });
 
-const getData = ({ token, user }) => (dispatch) => {
+export const getData = ({ token, user }) => (dispatch) => {
   dispatch(gettingData());
   fetch({ token, user, type: 'issues' })
     .then((data) => dispatch(dataSuccess(data)))
     .catch(() => dispatch(dataFail()));
 };
-
-export default getData;

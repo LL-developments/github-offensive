@@ -1,0 +1,19 @@
+.section {
+  background: white;
+  bottom: 0;
+  height: 100%;
+  padding: 25px;
+  position: absolute;
+  right: 0;
+  transition: all 2s ease;
+}
+
+.hide {
+  background: white;
+  bottom: 0;
+  height: 100%;
+  padding: 25px;
+  position: absolute;
+  right: -500px;
+  transition: all 2s ease;
+}

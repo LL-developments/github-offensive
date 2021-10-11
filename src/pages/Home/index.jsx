@@ -1,7 +1,7 @@
 import { Bot, Contributions } from 'features';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import getData from 'redux/actions/data';
+import { getData } from 'redux/actions';
 import style from './Home.module.css';
 
 const Home = () => {
