@@ -13,9 +13,10 @@ export const welcomeMessage = () => {
   return message.default;
 };
 
-export const saveLocalStorage = (key, payload) => {
-  localStorage.setItem(key, JSON.stringify(payload));
-};
-
-export const getLocalStorage = (key) => JSON
-  .parse(localStorage.getItem(key));
+export const getUrlIssueInfo = (data) => data.items.map((issue) => {
+  const splitedUrl = issue.events_url.split('/');
+  const userRepo = splitedUrl[4];
+  const id = splitedUrl[7];
+  const name = splitedUrl[5];
+  return { id, name, userRepo };
+});

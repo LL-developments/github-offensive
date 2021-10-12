@@ -60,7 +60,7 @@ const Contributions = () => {
     <article className={style.issuesContainer}>
       <section className={style.issues}>
         <h2>{`Voce possui ${totalCount}`}</h2>
-        {issues.map((issue) => {
+        {issues && issues.map((issue) => {
           const { title } = issue;
           return (
             <section className={style.issue}>
