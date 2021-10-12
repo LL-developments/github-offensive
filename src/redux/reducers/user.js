@@ -1,23 +1,29 @@
-import { AUTH_TOKEN, SHOW_CHAT, USER_NAME } from 'redux/actions/types';
+import {
+  AUTH_TOKEN, SHOW_CHAT, USER_NAME,
+  GET_USER, GET_USER_FAIL, GET_USER_SUCCESS,
+} from 'redux/actions/types';
 
 const initialState = {
   isAuthValid: false,
   token: null,
   user: null,
   showChat: false,
+  info: {},
 };
 
 const userReducer = (state = initialState, { type, payload }) => {
-  switch (type) {
-    case AUTH_TOKEN:
-      return { ...state, token: payload, isAuthValid: true };
-    case USER_NAME:
-      return { ...state, user: payload };
-    case SHOW_CHAT:
-      return { ...state, showChat: payload };
-    default:
-      return state;
-  }
+  const cases = {
+
+    [AUTH_TOKEN]: { ...state, token: payload, isAuthValid: true },
+    [SHOW_CHAT]: { ...state, showChat: payload },
+    [USER_NAME]: { ...state, user: payload },
+
+    [GET_USER]: { ...state, loading: true },
+    [GET_USER_SUCCESS]: { ...state, info: payload, loading: false },
+    [GET_USER_FAIL]: { ...state, error: true, loading: false },
+  };
+
+  return cases[type] || state;
 };
 
 export default userReducer;

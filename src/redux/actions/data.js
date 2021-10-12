@@ -1,17 +1,20 @@
 import { fetch } from 'services';
 import { getUrlIssueInfo } from 'utils';
-import { GET_ISSUES, GET_ISSUES_FAIL, GET_ISSUES_SUCCESS } from './types';
+import {
+  GET_ISSUES, GET_ISSUES_FAIL, GET_ISSUES_SUCCESS,
+  GET_USER, GET_USER_FAIL, GET_USER_SUCCESS,
+} from './types';
 
-const gettingIssues = () => ({
-  type: GET_ISSUES,
+const fetchingData = (type) => ({
+  type,
 });
 
-const issuesFail = () => ({
-  type: GET_ISSUES_FAIL,
+const fetchFail = (type) => ({
+  type,
 });
 
-const issuesSuccess = (payload) => ({
-  type: GET_ISSUES_SUCCESS,
+const fetchSuccess = (type, payload) => ({
+  type,
   payload,
 });
 
@@ -41,13 +44,26 @@ const getDataIssues = async ({ token, user }) => {
   }
 };
 
+const getDataUser = async ({ token, user }) => {
+  try {
+    const userInfo = await fetch({ token, user, type: 'userInfo' });
+    return userInfo;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const getData = ({ token, user }) => async (dispatch) => {
-  dispatch(gettingIssues());
+  dispatch(fetchingData(GET_ISSUES));
+  dispatch(fetchingData(GET_USER));
   try {
     const issues = await getDataIssues({ token, user });
-    await dispatch(issuesSuccess(issues));
+    const userInfo = await getDataUser({ token, user });
+    await dispatch(fetchSuccess(GET_ISSUES_SUCCESS, issues));
+    await dispatch(fetchSuccess(GET_USER_SUCCESS, userInfo));
   } catch (error) {
-    dispatch(issuesFail());
+    dispatch(fetchFail(GET_ISSUES_FAIL));
+    dispatch(fetchFail(GET_USER_FAIL));
   }
 };
 

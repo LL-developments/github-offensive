@@ -3,4 +3,7 @@ export const USER_NAME = 'USER_NAME';
 export const GET_ISSUES = 'GET_ISSUES';
 export const GET_ISSUES_FAIL = 'GET_ISSUES_FAIL';
 export const GET_ISSUES_SUCCESS = 'GET_ISSUES_SUCCESS';
+export const GET_USER = 'GET_USER';
+export const GET_USER_FAIL = 'GET_USER_FAIL';
+export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
 export const SHOW_CHAT = 'SHOW_CHAT';

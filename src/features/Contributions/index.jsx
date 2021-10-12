@@ -63,7 +63,7 @@ const Contributions = () => {
         {issues && issues.map((issue) => {
           const { title } = issue;
           return (
-            <section className={style.issue}>
+            <section key={issue.id} className={style.issue}>
               <h3>{title}</h3>
             </section>
           );
